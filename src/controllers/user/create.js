@@ -1,6 +1,14 @@
-const create = (req, res) => {
-    const user = req.body
-    res.json({msg: 'Esta é a rota POST /user/', user: user})
-}
+import userModel from "../../models/userModel.js";
 
-export default create
+const create = async (req, res) => {
+  try {
+    const { name, email, avatar } = req.body;
+    const user = await userModel.create(name, email, avatar);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.json(error);
+  }
+};
+
+export default create;

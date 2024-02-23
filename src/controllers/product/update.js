@@ -1,5 +1,14 @@
-const update = (req, res) => {
-    res.json({msg: 'Esta é a rota PUT /product/'})
-}
+import productModel from "../../models/productModel.js";
 
-export default update
+const update = async (req, res) => {
+  try {
+    const { id, name, price, quantity, foto } = req.body;
+    const product = await productModel.update(id, name, price, quantity, foto);
+    res.json(product);
+  } catch (error) {
+    console.error(error);
+    res.json(error);
+  }
+};
+
+export default update;

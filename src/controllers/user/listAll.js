@@ -1,5 +1,13 @@
-const listAll = (req, res) => {
-    res.json({msg: 'Esta é a rota GET /user/'})
-}
+import userModel from '../../models/userModel.js'
 
-export default listAll
+const listAll = async (req, res) => {
+  try {
+    const user = await userModel.findMany();
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.json(error);
+  }
+};
+
+export default listAll;

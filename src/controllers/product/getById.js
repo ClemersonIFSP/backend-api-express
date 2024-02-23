@@ -1,6 +1,14 @@
-const getById = (req, res) => {
-    const id = req.params.id
-    res.json({msg: 'Esta é a rota GET /product/'+ id})
-}
+import productModel from "../../models/productModel.js";
 
-export default getById
+const getById = async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const product = await productModel.findUnique(id);
+    res.json(product);
+  } catch (error) {
+    console.error(error);
+    res.json(error);
+  }
+};
+
+export default getById;

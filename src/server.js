@@ -8,6 +8,7 @@ import productRouter from './routers/productRouter.js'
 //Middlewares
 const app = express();
 app.use(logger)
+app.use(express.json())
 // Rotas
 app.use('/user', userRouter)
 app.use('/product', productRouter)

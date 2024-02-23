@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model product {
+  id       Int     @id @default(autoincrement())
+  name     String  @db.VarChar(250)
+  price    Decimal @db.Decimal(8, 2)
+  quantity Int
+  foto     String  @db.Text
+}
+
+model user {
+  id     Int    @id @default(autoincrement())
+  name   String @db.VarChar(250)
+  email  String @unique(map: "email") @db.VarChar(250)
+  avatar String @db.Text
+}

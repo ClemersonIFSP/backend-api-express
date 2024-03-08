@@ -1,14 +1,19 @@
-import userModel from "../../models/userModel.js";
+import userModel from "../../models/userModel.js"
 
 const getById = async (req, res) => {
-  const id = parseInt(req.params.id);
-  try {
-    const user = await userModel.findUnique(id);
-    res.json(user);
-  } catch (error) {
-    console.error(error);
-    res.json(error);
-  }
-};
+    try{
+        const id = req.params.id
+        const user = await userModel.getById(+id)
+        res.json({
+            success: `Usuário ${id} encontrado com sucesso!`,
+            user
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            error: 'Opsss erro no servidor, tente novamente!'
+        })
+    }
+}
 
-export default getById;
+export default getById

@@ -1,5 +1,5 @@
 const logger = (req, res, next) => {
-    console.log('Olá! passei pelo logger')
+    console.log(`${req.method} ${req.originalUrl}`)
     next()
 }
 

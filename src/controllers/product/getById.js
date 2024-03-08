@@ -1,14 +1,19 @@
-import productModel from "../../models/productModel.js";
+import productModel from "../../models/productModel.js"
 
 const getById = async (req, res) => {
-  const id = parseInt(req.params.id);
-  try {
-    const product = await productModel.findUnique(id);
-    res.json(product);
-  } catch (error) {
-    console.error(error);
-    res.json(error);
-  }
-};
+    try{
+        const id = req.params.id
+        const product = await productModel.getById(+id)
+        res.json({
+            success: `Produto ${id} encontrado com sucesso!`,
+            product
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            error: 'Opsss erro no servidor, tente novamente!'
+        })
+    }
+}
 
-export default getById;
+export default getById

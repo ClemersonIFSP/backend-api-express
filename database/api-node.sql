@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Fev-2024 às 21:40
+-- Tempo de geração: 16-Fev-2024 às 21:39
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.0.13
 
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `name` varchar(250) NOT NULL,
-  `price` decimal(8,2) NOT NULL,
+  `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `foto` text NOT NULL
+  `photo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -49,6 +49,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Extraindo dados da tabela `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `email`, `avatar`) VALUES
+(1, 'Renan Cavichi', 'renancavichi@gmail.com', 'https://avatars.githubusercontent.com/u/4259630?v=4');
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -63,7 +70,7 @@ ALTER TABLE `product`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `unique-email` (`email`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -79,7 +86,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

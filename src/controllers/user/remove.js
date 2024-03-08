@@ -1,14 +1,19 @@
-import userModel from "../../models/userModel.js";
+import userModel from "../../models/userModel.js"
 
 const remove = async (req, res) => {
-  const id = parseInt(req.params.id);
-  try {
-    const user = await userModel.remove(id);
-    res.json(user);
-  } catch (error) {
-    console.error(error);
-    res.json(error);
-  }
-};
+    try{
+        const id = req.params.id
+        const result = await userModel.remove(+id)
+        res.json({
+            success: `Usuário ${id} apagado com sucesso!`,
+            user: result
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            error: 'Opsss erro no servidor, tente novamente!'
+        })
+    }
+}
 
-export default remove;
+export default remove

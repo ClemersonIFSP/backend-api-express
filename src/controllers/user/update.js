@@ -1,14 +1,20 @@
-import userModel from "../../models/userModel.js";
+import userModel from "../../models/userModel.js"
 
 const update = async (req, res) => {
-  try {
-    const { id, name, email, avatar } = req.body;
-    const user = await userModel.update(id, name, email, avatar);
-    res.json(user);
-  } catch (error) {
-    console.error(error);
-    res.json(error);
-  }
-};
+    try{
+        const id = +req.params.id
+        const user = req.body
+        const result = await userModel.edit({id, ...user})
+        res.json({
+            success: `Usuário ${id} editado com sucesso!`,
+            user: result
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            error: 'Opsss erro no servidor, tente novamente!'
+        })
+    }
+}
 
-export default update;
+export default update

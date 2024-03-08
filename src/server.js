@@ -1,19 +1,20 @@
-import express from 'express';
-import { PORT, HOST } from './config.js';
-import logger from './middlewares/logger.js'
-//Import das Rotas
+//const express = require('express')
+import express from 'express'
+import {PORT, HOST} from './config.js'
 import userRouter from './routers/userRouter.js'
 import productRouter from './routers/productRouter.js'
+import logger from './middlewares/logger.js'
 
-//Middlewares
-const app = express();
+const app = express()
+
 app.use(logger)
 app.use(express.json())
-// Rotas
+
 app.use('/user', userRouter)
 app.use('/product', productRouter)
 
-
 app.listen(PORT, () => {
-  console.log(`Server running on  ${HOST}:${PORT}`);
-});
+  console.log(`Server running on ${HOST}:${PORT}`)
+})
+
+

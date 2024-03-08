@@ -1,13 +1,18 @@
-import productModel from "../../models/productModel.js";
+import productModel from "../../models/productModel.js"
 
 const listAll = async (req, res) => {
-  try {
-    const product = await productModel.findMany();
-    res.json(product);
-  } catch (error) {
-    console.error(error);
-    res.json(error);
-  }
-};
+    try{
+        const products = await productModel.getAll()
+        return res.json({
+            success: 'Produtos listados com sucesso!',
+            products
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            error: 'Opsss erro no servidor, tente novamente!'
+        })
+    }
+}
 
-export default listAll;
+export default listAll

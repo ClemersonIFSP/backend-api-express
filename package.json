@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "prima:generate": "npx prisma db generate",
+    "prima:pull": "npx prisma db pull",
+    "prima:push": "npx prisma db push"
   },
   "keywords": [
     "js",
